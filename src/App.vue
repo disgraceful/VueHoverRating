@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-container class="text-center">
+      <v-col>
+        <vue-rating-tooltip></vue-rating-tooltip>
+      </v-col>
+      <v-col>
+        <custom-rating></custom-rating>
+      </v-col>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TooltipRating from "./components/VuetifyRatingWithTooltip";
+import HoverRating from "./components/CustomHoverRating";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    "vue-rating-tooltip": TooltipRating,
+    "custom-rating": HoverRating
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
