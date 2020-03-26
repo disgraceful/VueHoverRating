@@ -2,7 +2,7 @@
 
 Vuetify VRating component has slot for customizing icons
 
-```js
+```html
  <v-rating>
     <template v-slot:item="props">
         <v-icon
@@ -21,7 +21,7 @@ However `mouseenter` and `mouseleave` events defined on the `VRating` component.
 
 This solution only provides visual effect of hover functionality, for rating logic (v-model, input event, etc) additional methods are required.
 
-```js
+```html
 <v-hover v-slot:default="{ hover }" v-for="i in 5" :key="i">
     <v-icon>
         {{ hover? "mdi-star" : "mdi-star-outline" }}
@@ -60,9 +60,10 @@ export const ExtendRating = {
 ```
 
 ## More
+
 Both ways can be used to implement more than simple hover functionality. For example add `VTooltip` to highlight rating value.
 
-```js
+```html
 <v-hover v-slot:default="{ hover }" v-for="i in 5" :key="i">
     <v-tooltip bottom>
        <template v-slot:activator="{ on }">
