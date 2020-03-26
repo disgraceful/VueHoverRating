@@ -22,6 +22,7 @@
         <span>{{ i }}</span>
       </v-tooltip>
     </v-hover>
+
   </div>
 </template>
 
