@@ -3,30 +3,30 @@
 Vuetify VRating component has slot for customizing icons
 
 ```js
- <v-rating v-model="rating">
-      <template v-slot:item="props">
+ <v-rating>
+    <template v-slot:item="props">
         <v-icon
           large
           @click="props.click"
         >
           {{ props.isFilled ? 'mdi-star-circle' : 'mdi-circle-outline' }}
         </v-icon>
-      </template>
-    </v-rating>
+    </template>
+</v-rating>
 ```
 
-However `mouseenter` and `mouseleave` events defined on the `VRating` component. Therefore even with `hover` property set to true, "hover" functionality will not be avaliable while using slots. I found two solutions (there are obviously more and better ones!):
+However `mouseenter` and `mouseleave` events defined on the `VRating` component. Therefore even with `hover` property set to true, hover functionality will not be avaliable while using slots. I found two solutions (there are obviously more and better ones!).
 
 ### Use Vuetify VHover
 
-This solution only provides visual effect of hover functionality, for rating logic (v-model, input events, etc) additional methods are required.
+This solution only provides visual effect of hover functionality, for rating logic (v-model, input event, etc) additional methods are required.
 
 ```js
 <v-hover v-slot:default="{ hover }" v-for="i in 5" :key="i">
-      <v-icon>
+    <v-icon>
         {{ hover? "mdi-star" : "mdi-star-outline" }}
-      </v-icon>
-    </v-hover>
+    </v-icon>
+</v-hover>
 ```
 
 ### Extend Existing VRating component
@@ -47,37 +47,30 @@ export const ExtendRating = {
 
   createMouseEnterHandler(index) {
     return (event) => {
-               this.onMouseEnter(event, index);
+        this.onMouseEnter(event, index);
     }
   },
+
   createMouseLeaveHandler() {
     return () => {
-             this.onMouseLeave();
+        this.onMouseLeave();
     }
    }
 };
 ```
 
-## More info
-
+## More
 Both ways can be used to implement more than simple hover functionality. For example add `VTooltip` to highlight rating value.
-```js
-    <v-hover
-      v-slot:default="{ hover }"
-      v-for="i in 5"
-      :key="i"
-    >
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-icon
-            color="primary"
-            v-on="on"
-          >
-            {{ hover ? "mdi-star" : "mdi-star-outline" }}
-          </v-icon>
-        </template>
-        <span>{{ i }}</span>
-      </v-tooltip>
-    </v-hover>
-```
 
+```js
+<v-hover v-slot:default="{ hover }" v-for="i in 5" :key="i">
+    <v-tooltip bottom>
+       <template v-slot:activator="{ on }">
+         <v-icon color="primary" v-on="on">
+           {{ hover ? "mdi-star" : "mdi-star-outline" }}
+         </v-icon>
+       </template>
+       <span>{{ i }}</span>
+    </v-tooltip>
+</v-hover>
+```

@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <v-hover
+    <!-- <v-hover
       v-slot:default="{ hover }"
       v-for="i in 5"
       :key="i"
@@ -21,8 +21,8 @@
         </template>
         <span>{{ i }}</span>
       </v-tooltip>
-    </v-hover>
-
+    </v-hover> -->
+    
   </div>
 </template>
 
