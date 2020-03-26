@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import TooltipRating from "./components/VuetifyRatingWithTooltip";
+import TooltipRating from "./components/VuetifyExtendRating";
 import HoverRating from "./components/CustomHoverRating";
 export default {
   data() {
