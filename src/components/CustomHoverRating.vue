@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <v-hover v-slot:default="{ hover }" v-for="i in 5" :key="i">
+  <div class="d-flex">
+    <v-hover
+      v-slot:default="{ hover }"
+      v-for="i in 5"
+      :key="i"
+      open-delay="200"
+      close-delay="200"
+    >
       <v-tooltip bottom color="#757575">
         <template v-slot:activator="{ on }">
           <v-icon
             color="primary"
-            class="pl-1"
             v-on="on"
             @mouseover="hoverMe(i)"
             @mouseleave="unhoverMe"
@@ -22,11 +27,21 @@
 
 <script>
 export default {
+  props: {
+    value: {
+      type: Number,
+      default: 0
+    }
+  },
+  watch: {
+    value(val) {
+      this.hovered = val;
+    }
+  },
   data() {
     return {
       rating: 0,
-      hovered: 0,
-      clicked: false
+      hovered: 0
     };
   },
   methods: {
@@ -34,18 +49,15 @@ export default {
       this.hovered = i;
     },
     unhoverMe() {
-      if (!this.clicked) {
-        this.hovered = this.rating || 0;
-      }
+      this.hovered = this.rating || 0;
     },
     clickMe() {
-      this.clicked = true;
       this.rating = this.hovered;
-    },
-    clear() {
-      this.hovered = 0;
-      this.rating = 0;
+      this.$emit("input", this.rating);
     }
+  },
+  created() {
+    this.hovered = this.value;
   }
 };
 </script>

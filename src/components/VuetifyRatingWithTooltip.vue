@@ -1,5 +1,9 @@
 <template>
-  <hover-rating v-model="rating" hover>
+  <hover-rating
+    :value="value"
+    @input="$emit('input', $event.target.value)"
+    hover
+  >
     <template v-slot:item="props">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -24,10 +28,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      rating: 2
-    };
+  props: {
+    value: {
+      type: Number,
+      default: 0
+    }
   }
 };
 </script>
